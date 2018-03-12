@@ -256,6 +256,14 @@ export default Component.extend({
   currentScrollOffset: 0,
 
   /**
+   * @property currentScrollXOffset
+   * @type {Number}
+   * @default 0
+   * @private
+   */
+  currentScrollXOffset: 0,
+
+  /**
    * @property hasReachedTargetScrollOffset
    * @type {Boolean}
    * @default true
@@ -475,6 +483,21 @@ export default Component.extend({
     onScroll(scrollOffset /* , event */) {
       this.set('currentScrollOffset', scrollOffset);
       this.sendAction('onScroll', ...arguments);
+    },
+
+    /**
+     * onScrollX action - sent when user scrolls in the X direction
+     *
+     * This only works when `useVirtualScrollbar` is `true`, i.e. when you are
+     * using fixed headers / footers.
+     *
+     * @event onScrollX
+     * @param {Number} scrollOffset The scroll offset in px
+     * @param {Event} event The scroll event
+     */
+    onScrollX(scrollXOffset /* , event */) {
+      this.set('currentScrollXOffset', scrollXOffset);
+      this.sendAction('onScrollX', ...arguments);
     },
 
     /**
